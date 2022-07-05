@@ -7,10 +7,13 @@
     <script src="script.js"></script>
   </head>
   <body>
-      <div id="cc"></div>
+      <div id="all-threads-container"></div>
+      <form method="POST" action="/new-thread-handler">
+        <input type="submit" value="Create New Thread"/>
+      </form>
       <script>
           const id = 1;
-          var container = document.getElementById("cc"); 
+          var container = document.getElementById("all-threads-container"); 
           var thread = document.createElement('a');
           thread.href=`/Thread.html?id=${id}`;
           thread.innerHTML="hi";

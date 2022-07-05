@@ -7,13 +7,13 @@
     <script src="script.js"></script>
   </head>
   <body onload="getMessages();">
-    <form method="POST" action="/form-handler">
+      <div id="thread-container"></div>
+      <form method="POST" action="/form-handler">
         <textarea name="text-input" placeholder="Your Message"></textarea>
         <input type="hidden" id="id-container" name="threadID">
         <br/>
         <input type="submit" />
       </form>
-      <div id="messages-container"></div>
   </body>
   <script>
     const queryString = window.location.search;

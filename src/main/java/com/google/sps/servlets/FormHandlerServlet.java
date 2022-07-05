@@ -23,14 +23,16 @@ public class FormHandlerServlet extends HttpServlet {
     String threadID = request.getParameter("threadID");
 
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-    KeyFactory keyFactory = datastore.newKeyFactory().setKind("Task");
+    KeyFactory keyFactory = datastore.newKeyFactory().setKind("Comment");
     FullEntity taskEntity =
         Entity.newBuilder(keyFactory.newKey())
             .set("text", textValue)
             .set("timestamp", timestamp)
             .set("threadID", threadID)
             .build();
-    datastore.put(taskEntity);
+    if (threadID != null && threadID != "") {
+        datastore.put(taskEntity);
+    }
 
     // Print the value so you can see it in the server logs.
     System.out.println("You submitted: " + textValue);
