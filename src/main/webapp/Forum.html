@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+      <div id="cc"></div>
+      <script>
+          const id = 1;
+          var container = document.getElementById("cc"); 
+          var thread = document.createElement('a');
+          thread.href=`/Thread.html?id=${id}`;
+          thread.innerHTML="hi";
+          container.appendChild(thread);
+      </script>
+  </body>
+</html>
