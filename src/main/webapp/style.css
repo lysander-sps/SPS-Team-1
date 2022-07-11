@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #ffffff;
-    --secondary-color: #88ccff;
+    --color-1: #55aaaa;
+    --color-2: #228888;
   }
 
 #content {
@@ -13,12 +13,24 @@
   margin-top: 20px;
 }
 
+.forum-thread-outer {
+    width:40%;
+    padding: 1%;
+    background-color: var(--color-2);
+    border-color: var(--color-1);
+    border-width: 4px;
+    border-style: solid;
+    margin-top: 10px;
+}
+
 .forum-thread {
     display: block;
     width:40%;
-    border-color: black;
-    border-width: 1px;
-    border: solid;
+    padding: 1%;
+    background-color: var(--color-2);
+    font-size: 30px;
+    color: white;
+    text-decoration : none;
 }
 
 .thread-comment {
@@ -28,7 +40,8 @@
     border-color: lightgray;
     width: 90%;
     padding: 8px;
-    margin-top: 15px;
+    margin-top: 7.5px;
+    margin-bottom: 7.5px;
  }
 
  #thread-container {
@@ -37,4 +50,9 @@
      height: 500px;
      overflow-y: scroll;
      width: 50%;
+ }
+
+ #all-threads-container {
+    margin-top: 7.5px;
+    margin-bottom: 7.5px;
  }

@@ -10,17 +10,28 @@ import com.google.cloud.datastore.DatastoreOptions;
 import com.google.cloud.datastore.Entity;
 import com.google.cloud.datastore.FullEntity;
 import com.google.cloud.datastore.KeyFactory;
+import com.google.cloud.datastore.Query;
+import com.google.cloud.datastore.QueryResults;
+import com.google.cloud.datastore.StructuredQuery.OrderBy;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/new-thread-handler")
 public class NewThreadHandler extends HttpServlet{
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String title = request.getParameter("title");
+        long timestamp = System.currentTimeMillis();
+
         Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-        KeyFactory keyFactory = datastore.newKeyFactory().setKind("Data");
+
+
+
+        KeyFactory keyFactory = datastore.newKeyFactory().setKind("Threads");
         FullEntity taskEntity =
             Entity.newBuilder(keyFactory.newKey())
-                .set("id", "<Id here>")
-                .set("title", "<Title here>")
+                .set("title", title)
+                .set("timestamp", timestamp)
                 .build();
         datastore.put(taskEntity);
         response.sendRedirect("/Forum.html");

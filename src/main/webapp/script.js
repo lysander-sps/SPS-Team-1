@@ -31,3 +31,28 @@ async function getMessages() {
         }
     }
 }
+
+async function getThreads() {
+    const responseFromServer = await fetch('/list-threads');
+    const container = document.getElementById('all-threads-container');
+    const threads = await responseFromServer.json()
+    for (let i = 0; i < threads.length; i++) {
+        const threadOuter = document.createElement('div');
+        threadOuter.classList.add("forum-thread-outer");
+        const newThread = document.createElement("a");
+        threadOuter.appendChild(newThread);
+        newThread.classList.add("forum-thread");
+        newThread.textContent = threads[i].title;
+        newThread.href=`/Thread.html?id=${threads[i].id}`;
+        container.appendChild(threadOuter);
+    }
+}
+
+function showElement(id) {
+    document.getElementById(id).style.display = "block";
+}
+
+function hideElement(id) {
+    document.getElementById(id).style.display = "none";
+}
+

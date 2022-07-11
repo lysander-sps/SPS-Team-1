@@ -6,18 +6,26 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getThreads();">
       <div id="all-threads-container"></div>
-      <form method="POST" action="/new-thread-handler">
-        <input type="submit" value="Create New Thread"/>
-      </form>
+      <button id="create-thread-btn" onClick="showElement('new-thread-startup');hideElement('create-thread-btn');">New Thread</button>
+      <div id="new-thread-startup" style="display: none;">
+        <form method="POST" action="/new-thread-handler">
+          <input type="text" name="title" placeholder="Thread Title"></textarea>
+          <br/>
+          <input type="submit" value="Create"/>
+        </form>
+      </div>
       <script>
-          const id = 1;
-          var container = document.getElementById("all-threads-container"); 
-          var thread = document.createElement('a');
-          thread.href=`/Thread.html?id=${id}`;
-          thread.innerHTML="hi";
-          container.appendChild(thread);
+          const container = document.getElementById("all-threads-container"); 
+          const threadOuter = document.createElement('div');
+          threadOuter.classList.add("forum-thread-outer");
+          const thread = document.createElement('a');
+          threadOuter.appendChild(thread);
+          thread.classList.add("forum-thread");
+          thread.href=`/Thread.html?id=0`;
+          thread.innerHTML="General";
+          container.appendChild(threadOuter);
       </script>
   </body>
 </html>
