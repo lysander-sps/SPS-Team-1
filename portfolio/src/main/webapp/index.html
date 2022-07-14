@@ -1,19 +1,36 @@
+<!--The Landing Page-->
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click <a href="/hello">here</a> to see content created by server code.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Smooch&family=Splash&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="landing.css">
+    <title>[To be filled]</title>
+</head>
+<body>
+    <div class="top-bar">
+        <h3>[Name of the app]</h3>
     </div>
-  </body>
+    <div class="container">
+        <h1>For    <span class="title"></span></h1>
+        <h2>A space for your team</h2>
+        
+    </div>
+    <div class="signin">
+        <button>Log In</button> <button>Sign Up</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <script>
+        var typed = new Typed(".title",
+        {strings:["Productivity","Collaboration"],
+        typeSpeed: 150,
+        backSpeed: 150,
+        loop: true}
+        )
+    </script>
+</body>
 </html>
