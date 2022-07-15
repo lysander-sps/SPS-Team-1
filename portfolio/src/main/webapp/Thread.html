@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body onload="getMessages();">
+      <div id="thread-container"></div>
+      <form method="POST" action="/form-handler">
+        <textarea name="text-input" placeholder="Your Message"></textarea>
+        <input type="hidden" id="id-container" name="threadID">
+        <br/>
+        <input type="submit" />
+      </form>
+  </body>
+  <script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const threadID = urlParams.get('id')
+    var container = document.getElementById("id-container"); 
+    container.value = threadID;
+  </script>
+</html>
