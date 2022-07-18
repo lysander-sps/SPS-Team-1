@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="content">
+        <div class="heading"> 
+            <h1>Photo Gallery</h1>
+            <p>Upload your photo by clicking the button below.</p>
+        </div>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label>
+            <input type="file" name="image"/>
+            <span>+</span>
+            <br/>
+            <div class="caption">
+            <textarea name="message"></textarea>
+            <button>submit</button>
+            </div>
+        </label>
+        </form>
+
+    <p><a href="/list-images">Click here to see all of the uploaded images!</a></p>
+
+
+      <!-- <p>Click <a href="/hello">here</a> to see content created by server code.</p>
+      <p>Click here to get a random message:</p>
+      <button onclick="addRandomGreeting()">Hello</button>
+      <div id="greeting-container"></div> -->
+    </div>
+  </body>
+</html>
