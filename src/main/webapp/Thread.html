@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body onload="getMessages();getGroups();">
+    <div class="top-bar">
+        <h3>[Name of the App]</h3>
+            <ul class="main-menu">
+                <li> <a href="home.html">Home</a></li>
+                <li><a href="">To Do List</a> </li>
+                <li> <a href="">Gallery</a></li>
+                <li class="active"> <a href="Forum.html">Forum</a> </li>
+                <select id="groups-list" onChange="setGroup(this);redirectToHome();">
+                </select>
+            </ul>
+    </div>
+      <div id="thread-container"></div>
+      <form method="POST" action="/form-handler" onsubmit="getMessages();">
+        <textarea name="text-input" placeholder="Your Message"></textarea>
+        <input type="hidden" id="threadID-container" name="threadID">
+        <input type="hidden" id="groupID-container" name="groupID">
+        <br/>
+        <input type="submit" />
+      </form>
+  </body>
+  <script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const threadID = urlParams.get('id')
+    const groupID = localStorage.getItem('groupID');
+    document.getElementById("threadID-container").value = threadID;
+    document.getElementById("groupID-container").value = groupID;
+  </script>
+</html>
