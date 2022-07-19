@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="top-bar">
+        <h3>FUNION</h3>
+            <ul class="main-menu">
+                <li> <a href="home.html">Home</a></li>
+                <li><a href="">To Do List</a> </li>
+                <li class="active"> <a href="gallery.html">Gallery</a></li>
+                <li> <a href="">Forum</a> </li>
+            </ul>
+        
+    </div>
+
+    <div class="content">
+        <div class="heading"> 
+            <h1>Photo Gallery</h1>
+            <p class="direct"><a href="/list-images">Direct to Photo Gallery</a></p>
+            <p>Start uploading your photo by clicking the button below.</p>
+        </div>
+
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <label>
+            <input type="file" name="image"/>
+            <span>+</span>
+            <br/><br/>
+            <div class="caption">
+            <!-- <textarea type="text" class="textarea" name="message"></textarea> -->
+            <button>submit</button>
+            </div>
+        </label>
+        </form>
+
+    </div>
+  </body>
+</html>
