@@ -15,27 +15,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/list-threads")
-public class ListThreadsServlet extends HttpServlet {
+@WebServlet("/list-groups")
+public class ListGroupsServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-        Query<Entity> query = Query.newEntityQueryBuilder().setKind("Threads").setOrderBy(OrderBy.asc("timestamp")).build();
+        Query<Entity> query = Query.newEntityQueryBuilder().setKind("Groups").setOrderBy(OrderBy.asc("timestamp")).build();
         QueryResults<Entity> results = datastore.run(query);
-        List<Thread> messages = new ArrayList<>();
+        List<Group> groups = new ArrayList<>();
         while (results.hasNext()) {
         Entity entity = results.next();
 
         long id = entity.getKey().getId();
-        String groupID = entity.getString("groupID");
-        String title = entity.getString("title");
+        String title = entity.getString("name");
 
-        Thread msg = new Thread(id, groupID, title);
-        messages.add(msg);
+        Group group = new Group(id, title);
+        groups.add(group);
         }
 
         Gson gson = new Gson();
         response.setContentType("application/json;");
-        response.getWriter().println(gson.toJson(messages));
+        response.getWriter().println(gson.toJson(groups));
     }
 }

@@ -16,24 +16,22 @@ import com.google.cloud.datastore.StructuredQuery.OrderBy;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/new-thread-handler")
-public class NewThreadHandler extends HttpServlet{
+@WebServlet("/new-group-handler")
+public class NewGroupHandler extends HttpServlet{
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String title = request.getParameter("title");
+        String name = request.getParameter("name");
         long timestamp = System.currentTimeMillis();
-        String groupID = request.getParameter("groupID");
 
         Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
 
-        KeyFactory keyFactory = datastore.newKeyFactory().setKind("Threads");
+        KeyFactory keyFactory = datastore.newKeyFactory().setKind("Groups");
         FullEntity taskEntity =
             Entity.newBuilder(keyFactory.newKey())
-                .set("title", title)
-                .set("groupID", groupID)
+                .set("name", name)
                 .set("timestamp", timestamp)
                 .build();
         datastore.put(taskEntity);
-        response.sendRedirect("/Forum.html");
+        response.sendRedirect("Forum.html");
     }
 }

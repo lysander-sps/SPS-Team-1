@@ -47,9 +47,10 @@ public class ListMessagesServlet extends HttpServlet {
       long id = entity.getKey().getId();
       String text = entity.getString("text");
       long timestamp = entity.getLong("timestamp");
+      String groupID = entity.getString("groupID");
       String threadID = entity.getString("threadID");
 
-      Entry msg = new Entry(id, text, timestamp, threadID);
+      Entry msg = new Entry(id, text, timestamp, groupID, threadID);
       messages.add(msg);
     }
 

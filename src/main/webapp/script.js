@@ -21,13 +21,16 @@ async function getMessages() {
     const entries = await responseFromServer.json()
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
+    const groupID = localStorage.getItem('groupID');
     const threadID = urlParams.get('id')
     for (let i = 0; i < entries.length; i++) {
         const newMsg = document.createElement("div");
-        if (entries[i].threadID === threadID) {
-            newMsg.classList.add("thread-comment")
-            newMsg.textContent = entries[i].text;
-            container.appendChild(newMsg);
+        if (entries[i].groupID === groupID) {
+            if (entries[i].threadID === threadID) {
+                newMsg.classList.add("thread-comment")
+                newMsg.textContent = entries[i].text;
+                container.appendChild(newMsg);
+            }
         }
     }
 }
@@ -36,15 +39,19 @@ async function getThreads() {
     const responseFromServer = await fetch('/list-threads');
     const container = document.getElementById('all-threads-container');
     const threads = await responseFromServer.json()
+    const groupID = localStorage.getItem('groupID');
+    console.log("ee " + threads[0].groupID)
     for (let i = 0; i < threads.length; i++) {
-        const threadOuter = document.createElement('div');
-        threadOuter.classList.add("forum-thread-outer");
-        const newThread = document.createElement("a");
-        threadOuter.appendChild(newThread);
-        newThread.classList.add("forum-thread");
-        newThread.textContent = threads[i].title;
-        newThread.href=`/Thread.html?id=${threads[i].id}`;
-        container.appendChild(threadOuter);
+        if (threads[i].groupID === groupID) {
+            const threadOuter = document.createElement('div');
+            threadOuter.classList.add("forum-thread-outer");
+            const newThread = document.createElement("a");
+            threadOuter.appendChild(newThread);
+            newThread.classList.add("forum-thread");
+            newThread.textContent = threads[i].title;
+            newThread.href=`/Thread.html?id=${threads[i].id}`;
+            container.appendChild(threadOuter);
+        }
     }
 }
 
@@ -54,5 +61,13 @@ function showElement(id) {
 
 function hideElement(id) {
     document.getElementById(id).style.display = "none";
+}
+
+function setGroupID(id) {
+    localStorage.setItem('groupID', id);
+}
+
+function clearGroupID() {
+    localStorage.removeItem('groupID');
 }
 

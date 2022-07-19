@@ -10,7 +10,8 @@
       <div id="thread-container"></div>
       <form method="POST" action="/form-handler">
         <textarea name="text-input" placeholder="Your Message"></textarea>
-        <input type="hidden" id="id-container" name="threadID">
+        <input type="hidden" id="threadID-container" name="threadID">
+        <input type="hidden" id="groupID-container" name="groupID">
         <br/>
         <input type="submit" />
       </form>
@@ -19,7 +20,8 @@
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const threadID = urlParams.get('id')
-    var container = document.getElementById("id-container"); 
-    container.value = threadID;
+    const groupID = localStorage.getItem('groupID');
+    document.getElementById("threadID-container").value = threadID;
+    document.getElementById("groupID-container").value = groupID;
   </script>
 </html>

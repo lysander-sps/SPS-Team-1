@@ -21,6 +21,7 @@ public class FormHandlerServlet extends HttpServlet {
     String textValue = request.getParameter("text-input");
     long timestamp = System.currentTimeMillis();
     String threadID = request.getParameter("threadID");
+    String groupID = request.getParameter("groupID");
 
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     KeyFactory keyFactory = datastore.newKeyFactory().setKind("Comment");
@@ -29,6 +30,7 @@ public class FormHandlerServlet extends HttpServlet {
             .set("text", textValue)
             .set("timestamp", timestamp)
             .set("threadID", threadID)
+            .set("groupID", groupID)
             .build();
     if (threadID != null && threadID != "") {
         datastore.put(taskEntity);

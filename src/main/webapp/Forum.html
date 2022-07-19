@@ -12,11 +12,17 @@
       <div id="new-thread-startup" style="display: none;">
         <form method="POST" action="/new-thread-handler">
           <input type="text" name="title" placeholder="Thread Title"></textarea>
+          <input type="hidden" id="groupID-container" name="groupID">
           <br/>
           <input type="submit" value="Create"/>
         </form>
       </div>
       <script>
+          const groupID = localStorage.getItem('groupID');
+          document.getElementById("groupID-container").value = groupID;
+      </script>
+      <script>
+        //  Default Thread
           const container = document.getElementById("all-threads-container"); 
           const threadOuter = document.createElement('div');
           threadOuter.classList.add("forum-thread-outer");
@@ -27,5 +33,6 @@
           thread.innerHTML="General";
           container.appendChild(threadOuter);
       </script>
+      
   </body>
 </html>
