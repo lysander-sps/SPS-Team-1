@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
     <title>Home</title>
 </head>
-<body>
+<body onload="getGroups();">
     
     <div class="top-bar">
         <h3>[Name of the App]</h3>
@@ -14,9 +15,9 @@
                 <li><a href="">To Do List</a> </li>
                 <li> <a href="">Gallery</a></li>
                 <li> <a href="Forum.html">Forum</a> </li>
+                <select id="groups-list" onChange="setGroup(this);redirectToHome();">
+                </select>
             </ul>
-        
     </div>
-    
 </body>
 </html>

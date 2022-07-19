@@ -40,7 +40,6 @@ async function getThreads() {
     const container = document.getElementById('all-threads-container');
     const threads = await responseFromServer.json()
     const groupID = localStorage.getItem('groupID');
-    console.log("ee " + threads[0].groupID)
     for (let i = 0; i < threads.length; i++) {
         if (threads[i].groupID === groupID) {
             const threadOuter = document.createElement('div');
@@ -52,6 +51,25 @@ async function getThreads() {
             newThread.href=`/Thread.html?id=${threads[i].id}`;
             container.appendChild(threadOuter);
         }
+    }
+}
+
+async function getGroups() {
+    const responseFromServer = await fetch('/list-groups');
+    const container = document.getElementById('groups-list');
+    const groups = await responseFromServer.json()
+    for (let i = 0; i < groups.length; i++) {
+        const group = document.createElement("option");
+        group.text = groups[i].title;
+        if (groups[i].id == localStorage.getItem("groupID")) {
+            group.selected = "selected";
+        }
+        const groupIdField = document.createElement("input")
+        groupIdField.type="hidden";
+        groupIdField.id = "groupID"
+        groupIdField.value = groups[i].id;
+        group.appendChild(groupIdField);
+        container.add(group);
     }
 }
 
@@ -71,3 +89,13 @@ function clearGroupID() {
     localStorage.removeItem('groupID');
 }
 
+function setGroup(sel) {
+    const selectedGroup = sel.options[sel.selectedIndex]
+    const groupID = selectedGroup.getElementsByTagName('input')[0].value;
+    localStorage.setItem('groupID', groupID);
+    console.log("Group set to " + groupID)
+}
+
+function redirectToHome() {
+    location.href = "home.html";
+}

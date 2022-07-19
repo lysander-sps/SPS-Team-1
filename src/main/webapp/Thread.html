@@ -6,9 +6,20 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body onload="getMessages();">
+  <body onload="getMessages();getGroups();">
+    <div class="top-bar">
+        <h3>[Name of the App]</h3>
+            <ul class="main-menu">
+                <li class="active"> <a href="home.html">Home</a></li>
+                <li><a href="">To Do List</a> </li>
+                <li> <a href="">Gallery</a></li>
+                <li> <a href="Forum.html">Forum</a> </li>
+                <select id="groups-list" onChange="setGroup(this);redirectToHome();">
+                </select>
+            </ul>
+    </div>
       <div id="thread-container"></div>
-      <form method="POST" action="/form-handler">
+      <form method="POST" action="/form-handler" onsubmit="getMessages();">
         <textarea name="text-input" placeholder="Your Message"></textarea>
         <input type="hidden" id="threadID-container" name="threadID">
         <input type="hidden" id="groupID-container" name="groupID">
