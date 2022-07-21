@@ -99,3 +99,46 @@ function setGroup(sel) {
 function redirectToHome() {
     location.href = "home.html";
 }
+
+function loadTasks() {
+    const groupID = localStorage.getItem('groupID');
+    fetch('/list-tasks').then(response => response.json()).then((tasks) => {
+      const taskListElement = document.getElementById('todo-list');
+      tasks.forEach((task) => {
+          if (task.groupID == groupID){
+            taskListElement.appendChild(createTaskElement(task));
+          }   
+      })
+    });
+  }
+  
+  /** Creates an element that represents a task, including its delete button. */
+  function createTaskElement(task) {
+    const taskElement = document.createElement('li');
+    taskElement.className = 'task';
+  
+    const titleElement = document.createElement('span');
+    titleElement.innerText = task.title;
+  
+    const deleteButtonElement = document.createElement('button');
+    deleteButtonElement.innerText = "Completed";
+    deleteButtonElement.addEventListener('click', () => {
+      deleteTask(task);
+  
+      // Remove the task from the DOM.
+      taskElement.remove();
+    });
+  
+    taskElement.appendChild(deleteButtonElement);
+    taskElement.appendChild(titleElement);
+
+    return taskElement;
+  }
+  
+  /** Tells the server to delete the task. */
+  function deleteTask(task) {
+    const params = new URLSearchParams();
+    params.append('id', task.id);
+    fetch('/delete-task', {method: 'POST', body: params});
+  }
+  
