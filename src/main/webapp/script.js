@@ -55,6 +55,7 @@ async function getThreads() {
 }
 
 async function getGroups() {
+    // For the selection bar on navbar
     const responseFromServer = await fetch('/list-groups');
     const container = document.getElementById('groups-list');
     const groups = await responseFromServer.json()
@@ -71,6 +72,11 @@ async function getGroups() {
         group.appendChild(groupIdField);
         container.add(group);
     }
+}
+
+async function displayGroups() {
+    // For the groups page
+    
 }
 
 function showElement(id) {
