@@ -7,6 +7,19 @@
     <script src="script.js"></script>
   </head>
   <body>
+    <div class="top-bar">
+        <h3>[Name of the App]</h3>
+            <ul class="main-menu">
+                <li> <a href="home.html">Home</a></li>
+                <li class="active"> <a href="Groups.html">Groups</a> </li>
+                <li><a href="todo.html">To Do List</a> </li>
+                <li> <a href="">Gallery</a></li>
+                <li> <a href="Forum.html">Forum</a> </li>
+                <select id="groups-list" onChange="setGroup(this);redirectToHome();">
+                </select>
+            </ul>
+    </div>
+    <div class="content">
       <button id="create-group-btn" onClick="showElement('new-group-startup');hideElement('create-group-btn');">New Group</button>
       <div id="new-group-startup" style="display: none;">
         <form method="POST" action="/new-group-handler">
@@ -15,8 +28,19 @@
           <input type="submit" value="Create"/>
         </form>
       </div>
-      <button onClick="setGroupID(0);">set 0</button>
-      <button onClick="setGroupID(1);">set 1</button>
-      <button onClick="clearGroupID();">clear</button>
+      <button id="join-group-btn" onClick="showElement('join-group');hideElement('join-group-btn');">Join Group</button>
+      <div id="join-group" style="display: none;">
+        <form method="POST" action="/new-member-handler">
+          <input type="text" name="groupID" placeholder="Group ID"></textarea>
+          <input type="hidden" id="userID-container" name="userID">
+          <br/>
+          <input type="submit" value="Join"/>
+        </form>
+      </div>
+    </div>
+    <script>
+        const userID = localStorage.getItem('userID');
+        document.getElementById("userID-container").value = userID;
+    </script>
   </body>
 </html>
