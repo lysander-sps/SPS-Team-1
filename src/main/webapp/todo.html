@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>To Do List</title>
+</head>
+<body onload="getGroups();loadTasks();">
+    
+    <div class="top-bar">
+        <h3>FUNION</h3>
+            <ul class="main-menu">
+                <li> <a href="home.html">Home</a></li>
+                <li class="active"><a href="todo.html">To Do List</a> </li>
+                <li> <a href="">Gallery</a></li>
+                <li> <a href="Forum.html">Forum</a> </li>
+            </ul>
+            <select id="groups-list" onChange="setGroup(this);redirectToHome();">
+            </select>
+            <a href="index.html" onclick="signOut();">Sign out</a>
+            
+    </div>
+    <div class="content">
+        <h1>Todo List</h1>
+
+    <ul id="todo-list"></ul>
+    <button id="create-todo-btn" onClick="showElement('new-todo-startup');hideElement('create-todo-btn');">New Todos</button>
+      <div id="new-todo-startup" style="display: none;">
+        <form method="POST" action="/new-todo-handler" onsubmit="getTodos();">
+          <input type="text"  class = "input-text" name="title" placeholder="Things needs to be done..."></textarea>
+          <input type="hidden" id="groupID-container" name="groupID">
+          <br/>
+          <button type="submit"> Create </button>
+        </form>
+      </div>
+    </div>
+    <script>
+        const groupID = localStorage.getItem('groupID');
+        document.getElementById("groupID-container").value = groupID;
+
+        function signOut() {
+          var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut().then(function () {
+            console.log('User signed out.');
+          });
+        }
+      </script>
+</body>
+</html>
