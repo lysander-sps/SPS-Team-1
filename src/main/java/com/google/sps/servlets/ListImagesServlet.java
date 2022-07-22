@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.sps.servlets.UploadHandlerServlet;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
 
 /** Shows all of the images uploaded to Cloud Storage. */
 @WebServlet("/list-images")

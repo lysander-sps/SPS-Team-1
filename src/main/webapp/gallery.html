@@ -23,22 +23,34 @@
     <div class="content">
         <div class="heading"> 
             <h1>Photo Gallery</h1>
-            <!-- <p class="direct"><a href="/list-images">Direct to Photo Gallery</a></p> -->
+            <input type="hidden" id="groupID-container" name="groupID">
+            <p class="direct"><a href="/list-images">Direct to Photo Gallery</a></p>
             <p>Start uploading your photo by clicking the button below.</p>
         </div>
 
     <form action="/upload" method="POST" enctype="multipart/form-data">
         <label>
             <input type="file" name="image"/>
-            <span>+</span>
             <br><br>
             <div class="name">
-            <textarea type="text" class="textarea" name="groupName" placeholder="Enter your group name"></textarea>
+            <input type="hidden" id="groupID-container" name="groupID">
             <button>submit</button>
             </div>
         </label>
         </form>
-
     </div>
+
+    <script>
+        const groupID = localStorage.getItem('groupID');
+        document.getElementById("groupID-container").value = groupID;
+
+        function signOut() {
+          var auth2 = gapi.auth2.getAuthInstance();
+          auth2.signOut().then(function () {
+            console.log('User signed out.');
+          });
+        }
+      </script>
+
   </body>
 </html>

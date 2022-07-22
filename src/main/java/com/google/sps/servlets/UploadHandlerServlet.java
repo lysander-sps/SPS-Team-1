@@ -29,6 +29,9 @@ import javax.imageio.ImageIO;
 import net.coobird.thumbnailator.Thumbnails;
 import org.imgscalr.Scalr;
 
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+
 /**
  * Takes an image submitted by the user and uploads it to Cloud Storage, and then displays it as
  * HTML in the response.
@@ -42,11 +45,8 @@ public class UploadHandlerServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    // Get the message entered by the user.
-    String message = request.getParameter("message");
-
     // Get the group name entered by the user.
-    String groupName = request.getParameter("groupName").toLowerCase();
+    String groupName = Jsoup.clean(request.getParameter("groupID"), Whitelist.none());
     setGroupName(groupName);
     
     // Get the file chosen by the user.
@@ -69,14 +69,11 @@ public class UploadHandlerServlet extends HttpServlet {
     String uploadedFileUrl = uploadToCloudStorage(fileName, fileInputStream);
 
     // Output some HTML that shows the data the user entered.
-    // You could also store the uploadedFileUrl in Datastore instead.
     PrintWriter out = response.getWriter();
     out.println("<p>Image you uploaded:</p>");
     out.println("<a href=\"" + uploadedFileUrl + "\" >");
     out.println("<img src=\"" + uploadedFileUrl + "\" id=\"image\">");
     out.println("</a>");
-    // out.println("<p>Caption:</p>");
-    // out.println("<p class=\"msg\"> " + message + " </p>");
     out.println("<br/><br/><br/>");
     out.println("<p class=\"direct\"><a href=\"/list-images\">Go to Photo Gallery</a></p>");
     
