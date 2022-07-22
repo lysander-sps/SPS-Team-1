@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-    <title>Home</title>
+    <title>FUNION - Home</title>
 </head>
 <body onload="getGroups();">
     
     <div class="top-bar">
-        <h3>[Name of the App]</h3>
+        <h3>FUNION</h3>
             <ul class="main-menu">
                 <li class="active"> <a href="home.html">Home</a></li>
                 <li><a href="todo.html">To Do List</a> </li>
-                <li> <a href="">Gallery</a></li>
+                <li> <a href="gallery.html">Gallery</a></li>
                 <li> <a href="Forum.html">Forum</a> </li>
             </ul>
             <select id="groups-list" onChange="setGroup(this);redirectToHome();">
             </select>
-            <a href="index.html" onclick="signOut();">Sign out</a>
+            <a class = "signout" href="index.html" onclick="signOut();">Sign out</a>
             
     </div>
     
