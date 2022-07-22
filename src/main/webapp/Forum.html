@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>FUNION - Forum</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
@@ -12,13 +12,16 @@
             <ul class="main-menu">
                 <li> <a href="home.html">Home</a></li>
                 <li><a href="todo.html">To Do List</a> </li>
-                <li> <a href="">Gallery</a></li>
+                <li> <a href="gallery.html">Gallery</a></li>
                 <li class="active"> <a href="Forum.html">Forum</a> </li>
-                <select id="groups-list" onChange="setGroup(this);redirectToHome();">
-                </select>
             </ul>
+            <select id="groups-list" onChange="setGroup(this);redirectToHome();">
+            </select>
+            <a class = "signout" href="index.html" onclick="signOut();">Sign out</a>
+            
     </div>
-      <div id="all-threads-container"></div>
+    <div class="content">
+        <div id="all-threads-container"></div>
       <button id="create-thread-btn" onClick="showElement('new-thread-startup');hideElement('create-thread-btn');">New Thread</button>
       <div id="new-thread-startup" style="display: none;">
         <form method="POST" action="/new-thread-handler" onsubmit="getThreads();">
@@ -28,6 +31,9 @@
           <input type="submit" value="Create"/>
         </form>
       </div>
+
+    </div>
+      
       <script>
           const groupID = localStorage.getItem('groupID');
           document.getElementById("groupID-container").value = groupID;
