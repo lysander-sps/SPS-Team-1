@@ -104,7 +104,9 @@ async function displayGroups() {
             container.appendChild(group);
         }
     } 
+    setGroup();
 }
+
 
 async function validateMembership(userID, groupID) {
     // Determines if a user is part of a group
@@ -134,7 +136,8 @@ function clearGroupID() {
     localStorage.removeItem('groupID');
 }
 
-function setGroup(sel) {
+function setGroup() {
+    const sel = document.getElementById("groups-list");
     const selectedGroup = sel.options[sel.selectedIndex]
     const groupID = selectedGroup.getElementsByTagName('input')[0].value;
     localStorage.setItem('groupID', groupID);
