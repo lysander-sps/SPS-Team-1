@@ -17,7 +17,7 @@
             </ul>
             <select id="groups-list" onChange="setGroup(this);redirectToHome();">
             </select>
-            <a class = "signout" href="index.html" onclick="signOut();">Sign out</a>
+            <a class = "g_id_signout" href="index.html" onclick="signOut();">Sign out</a>
             
     </div>
     <div class="content">
@@ -25,10 +25,10 @@
       <button id="create-thread-btn" onClick="showElement('new-thread-startup');hideElement('create-thread-btn');">New Thread</button>
       <div id="new-thread-startup" style="display: none;">
         <form method="POST" action="/new-thread-handler" onsubmit="getThreads();">
-          <input type="text" name="title" placeholder="Thread Title"></textarea>
+          <input type="text" class = "input-text" name="title" placeholder="Thread Title"></textarea>
           <input type="hidden" id="groupID-container" name="groupID">
           <br/>
-          <input type="submit" value="Create"/>
+          <button type="submit">Create</button>
         </form>
       </div>
 

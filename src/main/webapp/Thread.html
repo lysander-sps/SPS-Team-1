@@ -11,21 +11,26 @@
         <h3>FUNION</h3>
             <ul class="main-menu">
                 <li> <a href="home.html">Home</a></li>
-                <li><a href="">To Do List</a> </li>
-                <li> <a href="">Gallery</a></li>
+                <li><a href="todo.html">To Do List</a> </li>
+                <li> <a href="gallery.html">Gallery</a></li>
                 <li class="active"> <a href="Forum.html">Forum</a> </li>
-                <select id="groups-list" onChange="setGroup(this);redirectToHome();">
-                </select>
             </ul>
+            <select id="groups-list" onChange="setGroup(this);redirectToHome();">
+            </select>
+            <a class = "g_id_signout" href="index.html" onclick="signOut();">Sign out</a>
+            
     </div>
-      <div id="thread-container"></div>
+    <div class="content">
+        <div id="thread-container"></div>
       <form method="POST" action="/form-handler" onsubmit="getMessages();">
-        <textarea name="text-input" placeholder="Your Message"></textarea>
+        <textarea name="text-input" class = "input-text" placeholder="Your Message"></textarea>
         <input type="hidden" id="threadID-container" name="threadID">
         <input type="hidden" id="groupID-container" name="groupID">
         <br/>
-        <input type="submit" />
+        <button type="submit">Submit</button>
       </form>
+    </div>
+      
   </body>
   <script>
     const queryString = window.location.search;

@@ -189,4 +189,14 @@ function loadTasks() {
     params.append('id', task.id);
     fetch('/delete-task', {method: 'POST', body: params});
   }
+
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    google.accounts.id.disableAutoSelect();
+    auth2.signOut().then(function () {
+        auth2.disconnect();
+        localStorage.removeItem('userID');
+    });
+    
+}
   
