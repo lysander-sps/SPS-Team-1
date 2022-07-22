@@ -24,13 +24,13 @@ public class ListGroupsServlet extends HttpServlet {
         QueryResults<Entity> results = datastore.run(query);
         List<Group> groups = new ArrayList<>();
         while (results.hasNext()) {
-        Entity entity = results.next();
+            Entity entity = results.next();
 
-        long id = entity.getKey().getId();
-        String title = entity.getString("name");
+            String id = Long.toString(entity.getKey().getId());
+            String title = entity.getString("name");
 
-        Group group = new Group(id, title);
-        groups.add(group);
+            Group group = new Group(id, title);
+            groups.add(group);
         }
 
         Gson gson = new Gson();

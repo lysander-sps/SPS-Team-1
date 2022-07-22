@@ -38,7 +38,7 @@ public class NewGroupHandler extends HttpServlet{
         Query<Entity> query = Query.newEntityQueryBuilder().setKind("Groups").setOrderBy(OrderBy.desc("timestamp")).build();
         QueryResults<Entity> results = datastore.run(query);
         Entity entity = results.next();
-        long groupID = entity.getKey().getId();
+        String groupID = Long.toString(entity.getKey().getId());
 
         KeyFactory keyFactory2 = datastore.newKeyFactory().setKind("Members");
         FullEntity taskEntity2 =
@@ -49,6 +49,6 @@ public class NewGroupHandler extends HttpServlet{
                 .build();
         datastore.put(taskEntity2);
 
-        response.sendRedirect("Forum.html");
+        response.sendRedirect("home.html");
     }
 }
