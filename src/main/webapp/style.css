@@ -110,6 +110,7 @@
     padding: 8px;
     margin-top: 7.5px;
     margin-bottom: 7.5px;
+    position: relative;
  }
 
  .thread-comment-self {
@@ -121,6 +122,7 @@
     padding: 8px;
     margin-top: 7.5px;
     margin-bottom: 7.5px;
+    position: relative;
  }
 
  #thread-container {
@@ -134,6 +136,14 @@
  #all-threads-container {
     margin-top: 7.5px;
     margin-bottom: 7.5px;
+ }
+
+ .message-info-container {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 12px;
+    color: black;
  }
 
  .content{
