@@ -176,7 +176,13 @@
 }
 
 
-
+.group-id-container {
+    background-color: lightgray;
+    font-family: monospace;
+    font-size:14px;
+    display:inline-block;
+    width: 20%
+}
 
 
 .btn {
