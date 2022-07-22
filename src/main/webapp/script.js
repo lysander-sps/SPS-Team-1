@@ -23,12 +23,24 @@ async function getMessages() {
     const urlParams = new URLSearchParams(queryString);
     const groupID = localStorage.getItem('groupID');
     const threadID = urlParams.get('id')
+    const userID = localStorage.getItem('userID');
     for (let i = 0; i < entries.length; i++) {
         const newMsg = document.createElement("div");
         if (entries[i].groupID === groupID) {
             if (entries[i].threadID === threadID) {
-                newMsg.classList.add("thread-comment")
+                const timestamp = entries[i].timestamp;
+                const formattedTime = new Date(timestamp).toLocaleString();
+                if (localStorage.getItem('userID') === userID) {
+                    newMsg.classList.add("thread-comment-self")
+                }
+                else {
+                    newMsg.classList.add("thread-comment")
+                }
                 newMsg.textContent = entries[i].text;
+                const nameContainer = document.createElement("div");
+                nameContainer.classList.add("message-info-container")
+                nameContainer.textContent = entries[i].userName + " at " + formattedTime;
+                newMsg.appendChild(nameContainer)
                 container.appendChild(newMsg);
             }
         }

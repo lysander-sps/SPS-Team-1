@@ -110,6 +110,19 @@
     padding: 8px;
     margin-top: 7.5px;
     margin-bottom: 7.5px;
+    position: relative;
+ }
+
+ .thread-comment-self {
+    background-color: lightskyblue;
+    border: solid;
+    border-radius: 10px;
+    border-color: rgb(98, 164, 190);
+    width: 90%;
+    padding: 8px;
+    margin-top: 7.5px;
+    margin-bottom: 7.5px;
+    position: relative;
  }
 
  #thread-container {
@@ -123,6 +136,14 @@
  #all-threads-container {
     margin-top: 7.5px;
     margin-bottom: 7.5px;
+ }
+
+ .message-info-container {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 12px;
+    color: black;
  }
 
  .content{
