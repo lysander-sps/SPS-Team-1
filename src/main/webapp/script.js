@@ -30,7 +30,7 @@ async function getMessages() {
             if (entries[i].threadID === threadID) {
                 const timestamp = entries[i].timestamp;
                 const formattedTime = new Date(timestamp).toLocaleString();
-                if (localStorage.getItem('userID') === userID) {
+                if (entries[i].userID === userID) {
                     newMsg.classList.add("thread-comment-self")
                 }
                 else {
