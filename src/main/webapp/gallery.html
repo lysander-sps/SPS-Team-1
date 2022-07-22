@@ -17,7 +17,7 @@
             </ul>
             <select id="groups-list" onChange="setGroup(this);redirectToHome();">
             </select>
-            <a class = "signout" href="index.html" onclick="signOut();">Sign out</a>
+            <a class = "g_id_signout" href="index.html" onclick="signOut();">Sign out</a>
             
     </div>
     <div class="content">
@@ -44,12 +44,6 @@
         const groupID = localStorage.getItem('groupID');
         document.getElementById("groupID-container").value = groupID;
 
-        function signOut() {
-          var auth2 = gapi.auth2.getAuthInstance();
-          auth2.signOut().then(function () {
-            console.log('User signed out.');
-          });
-        }
       </script>
 
   </body>

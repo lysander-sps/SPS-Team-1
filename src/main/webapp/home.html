@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
+    <meta name="google-signin-client_id" content="774042301077-p5dqopcmh59g7u51mtu20k1uul0r605o.apps.googleusercontent.com">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <title>FUNION - Home</title>
@@ -18,7 +19,7 @@
             </ul>
             <select id="groups-list" onChange="setGroup(this);redirectToHome();">
             </select>
-            <a class = "signout" href="index.html" onclick="signOut();">Sign out</a>
+            <a class = "g_id_signout" href="index.html" onclick="signOut();">Sign out</a>
             
     </div>
     <div class="content">
@@ -46,16 +47,9 @@
         const userID = localStorage.getItem('userID');
         document.getElementById("userID-container1").value = userID;
         document.getElementById("userID-container2").value = userID;
+        
     </script>
     
-    <script>
-        function signOut() {
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut().then(function () {
-            });
-            auth2.disconnect();
-            localStorage.removeItem('userID');
-        }
-      </script>
+    
 </body>
 </html>
