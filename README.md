@@ -1,12 +1,18 @@
-# Google Software Product Sprint
+# FUNION (by TEAM 1 - Google SPS 2022)
 
-This repo contains the projects you'll work on throughout SPS.
+link to the site : http://summer22-sps-1.appspot.com/
 
-To get started:
+Funion is a web app that designed to bring families, friend groups, and teams together. Users can join groups and in the groups, they can share photos, discuss various topics, and write a to-do lists. 
 
-- Login to [Google Cloud Shell](https://ssh.cloud.google.com/cloudshell/editor)
-- Clone this repo: `cd; git clone https://github.com/google/software-product-sprint.git`
-- Open the GitHub setup walkthrough: `teachme ~/software-product-sprint/walkthroughs/week-0-setup/github-setup-walkthrough.md`
-  - If the tutorial panel does not open or display the walkthrough contents, try refreshing the page.
+This project uses:
+* Google OAuth 2 for the signin
+* HTML, CSS, and Java Script for the frontend
+* Java for the backend
+* Google Cloud Storage for Picture storage and Google Datastore for other data storage
 
-Then follow the on-screen instructions to set up your repo.
+Team Member:
+* Dylan Smith
+* Vicky Zhou
+* Sohyun Park
+
+Special thanks to Lysander for the help and support!
