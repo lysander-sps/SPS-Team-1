@@ -23,6 +23,8 @@
         <textarea name="text-input" placeholder="Your Message"></textarea>
         <input type="hidden" id="threadID-container" name="threadID">
         <input type="hidden" id="groupID-container" name="groupID">
+        <input type="hidden" id="userID-container" name="userID">
+        <input type="hidden" id="userName-container" name="userName">
         <br/>
         <input type="submit" />
       </form>
@@ -32,7 +34,11 @@
     const urlParams = new URLSearchParams(queryString);
     const threadID = urlParams.get('id')
     const groupID = localStorage.getItem('groupID');
+    const userID = localStorage.getItem('userID');
+    const userName = localStorage.getItem('userName');
     document.getElementById("threadID-container").value = threadID;
     document.getElementById("groupID-container").value = groupID;
+    document.getElementById("userID-container").value = userID;
+    document.getElementById("userName-container").value = userName;
   </script>
 </html>

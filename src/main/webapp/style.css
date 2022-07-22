@@ -112,6 +112,17 @@
     margin-bottom: 7.5px;
  }
 
+ .thread-comment-self {
+    background-color: lightskyblue;
+    border: solid;
+    border-radius: 10px;
+    border-color: rgb(98, 164, 190);
+    width: 90%;
+    padding: 8px;
+    margin-top: 7.5px;
+    margin-bottom: 7.5px;
+ }
+
  #thread-container {
      display: flex;
      flex-direction: column-reverse;

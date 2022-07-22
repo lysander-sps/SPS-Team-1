@@ -22,6 +22,8 @@ public class FormHandlerServlet extends HttpServlet {
     long timestamp = System.currentTimeMillis();
     String threadID = request.getParameter("threadID");
     String groupID = request.getParameter("groupID");
+    String userID = request.getParameter("userID");
+    String userName = request.getParameter("userName");
 
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     KeyFactory keyFactory = datastore.newKeyFactory().setKind("Comment");
@@ -31,6 +33,8 @@ public class FormHandlerServlet extends HttpServlet {
             .set("timestamp", timestamp)
             .set("threadID", threadID)
             .set("groupID", groupID)
+            .set("userID", userID)
+            .set("userName", userName)
             .build();
     if (threadID != null && threadID != "") {
         datastore.put(taskEntity);
