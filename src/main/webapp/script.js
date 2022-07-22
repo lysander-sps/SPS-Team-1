@@ -55,22 +55,69 @@ async function getThreads() {
 }
 
 async function getGroups() {
+    // For the selection bar on navbar
     const responseFromServer = await fetch('/list-groups');
     const container = document.getElementById('groups-list');
     const groups = await responseFromServer.json()
+    const userID = localStorage.getItem('userID')
     for (let i = 0; i < groups.length; i++) {
-        const group = document.createElement("option");
-        group.text = groups[i].title;
-        if (groups[i].id == localStorage.getItem("groupID")) {
-            group.selected = "selected";
+        const groupID = groups[i].id;
+        const isMembershipValid = await validateMembership(userID, groupID);
+        if (isMembershipValid) {
+            const group = document.createElement("option");
+            group.text = groups[i].title;
+            if (groups[i].id == localStorage.getItem("groupID")) {
+                group.selected = "selected";
+            }
+            const groupIdField = document.createElement("input")
+            groupIdField.type="hidden";
+            groupIdField.id = "groupID"
+            groupIdField.value = groups[i].id;
+            group.appendChild(groupIdField);
+            container.add(group);
         }
-        const groupIdField = document.createElement("input")
-        groupIdField.type="hidden";
-        groupIdField.id = "groupID"
-        groupIdField.value = groups[i].id;
-        group.appendChild(groupIdField);
-        container.add(group);
     }
+}
+
+async function displayGroups() {
+    // For the groups page
+    const responseFromServer = await fetch('/list-groups');
+    const container = document.getElementById('all-groups-container');
+    const groups = await responseFromServer.json()
+    const userID = localStorage.getItem('userID')
+    for (let i = 0; i < groups.length; i++) {
+        const groupID = groups[i].id;
+        const isMembershipValid = await validateMembership(userID, groupID);
+        if (isMembershipValid) {
+            const group = document.createElement("div");
+            group.textContent = groups[i].title + " ";
+            const idContainer = document.createElement("span");
+            idContainer.textContent = groups[i].id;
+            idContainer.classList.add("group-id-container");
+            idContainer.style.display = "none";
+            const showIdBtn = document.createElement("button")
+            showIdBtn.classList.add("group-show-id-btn");
+            showIdBtn.textContent = "Show ID"
+            showIdBtn.onclick = function() { showIdBtn.style.display = "none"; idContainer.style.display = "block";};
+            group.appendChild(idContainer);
+            group.appendChild(showIdBtn);
+            container.appendChild(group);
+        }
+    } 
+    setGroup();
+}
+
+
+async function validateMembership(userID, groupID) {
+    // Determines if a user is part of a group
+    const responseFromServer = await fetch('/list-members');
+    const members = await responseFromServer.json()
+    for (let i = 0; i < members.length; i++) {
+        if (members[i].userID == userID && members[i].groupID == groupID) {
+            return true;
+        }
+    }
+    return false
 }
 
 function showElement(id) {
@@ -89,7 +136,8 @@ function clearGroupID() {
     localStorage.removeItem('groupID');
 }
 
-function setGroup(sel) {
+function setGroup() {
+    const sel = document.getElementById("groups-list");
     const selectedGroup = sel.options[sel.selectedIndex]
     const groupID = selectedGroup.getElementsByTagName('input')[0].value;
     localStorage.setItem('groupID', groupID);

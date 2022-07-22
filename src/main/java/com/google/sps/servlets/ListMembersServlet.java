@@ -15,26 +15,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/list-groups")
-public class ListGroupsServlet extends HttpServlet {
+@WebServlet("/list-members")
+public class ListMembersServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-        Query<Entity> query = Query.newEntityQueryBuilder().setKind("Groups").setOrderBy(OrderBy.asc("timestamp")).build();
+        Query<Entity> query = Query.newEntityQueryBuilder().setKind("Members").setOrderBy(OrderBy.asc("timestamp")).build();
         QueryResults<Entity> results = datastore.run(query);
-        List<Group> groups = new ArrayList<>();
+        List<Member> members = new ArrayList<>();
         while (results.hasNext()) {
-            Entity entity = results.next();
+        Entity entity = results.next();
 
-            String id = Long.toString(entity.getKey().getId());
-            String title = entity.getString("name");
+        String userID = entity.getString("userID");
+        String groupID = entity.getString("groupID");
 
-            Group group = new Group(id, title);
-            groups.add(group);
+        Member member = new Member(userID, groupID);
+        members.add(member);
         }
 
         Gson gson = new Gson();
         response.setContentType("application/json;");
-        response.getWriter().println(gson.toJson(groups));
+        response.getWriter().println(gson.toJson(members));
     }
 }

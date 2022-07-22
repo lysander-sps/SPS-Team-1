@@ -6,7 +6,7 @@
     <script src="script.js"></script>
     <title>FUNION - Home</title>
 </head>
-<body onload="getGroups();">
+<body onload="getGroups();displayGroups();">
     
     <div class="top-bar">
         <h3>FUNION</h3>
@@ -21,16 +21,40 @@
             <a class = "signout" href="index.html" onclick="signOut();">Sign out</a>
             
     </div>
-    
-
-    
+    <div class="content">
+      <button id="create-group-btn" onClick="showElement('new-group-startup');hideElement('create-group-btn');">New Group</button>
+      <div id="new-group-startup" style="display: none;">
+        <form method="POST" action="/new-group-handler">
+          <input type="text" name="name" placeholder="Group Name"></textarea>
+          <input type="hidden" id="userID-container1" name="userID">
+          <br/>
+          <input type="submit" value="Create"/>
+        </form>
+      </div>
+      <button id="join-group-btn" onClick="showElement('join-group');hideElement('join-group-btn');">Join Group</button>
+      <div id="join-group" style="display: none;">
+        <form method="POST" action="/new-member-handler">
+          <input type="text" name="groupID" placeholder="Group ID"></textarea>
+          <input type="hidden" id="userID-container2" name="userID">
+          <br/>
+          <input type="submit" value="Join"/>
+        </form>
+      </div>
+    </div>
+    <div id="all-groups-container"></div>
+    <script>
+        const userID = localStorage.getItem('userID');
+        document.getElementById("userID-container1").value = userID;
+        document.getElementById("userID-container2").value = userID;
+    </script>
     
     <script>
         function signOut() {
-          var auth2 = gapi.auth2.getAuthInstance();
-          auth2.signOut().then(function () {
-            console.log('User signed out.');
-          });
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+            });
+            auth2.disconnect();
+            localStorage.removeItem('userID');
         }
       </script>
 </body>
